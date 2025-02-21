@@ -24,8 +24,8 @@ void RegistrarBanda()
     do {
     Console.WriteLine("*********************");
     Console.WriteLine("   Registrar banda");
-    Console.WriteLine("*********************");
-    Console.Write("\n Digite o nome da banda ou aperte Enter para voltar ao menu inicial: ");     
+    Console.WriteLine("*********************\n");
+    Console.Write("Digite o nome da banda ou aperte Enter para voltar ao menu inicial: ");     
     string nomeBanda = Console.ReadLine()!;
     if (string.IsNullOrEmpty(nomeBanda))
     {
@@ -39,10 +39,10 @@ void RegistrarBanda()
 
     } else {
     ListaDeBanda.Add(nomeBanda);
-    Console.Write($"\n Banda {nomeBanda} registrada com sucesso");
+    Console.Write($"\n Banda **{nomeBanda}** registrada com sucesso");
     }
 
-    Console.Clear();
+    
     Thread.Sleep(1000);//gera um delay de 1 segundo antes da proxima instrução
     Console.Write("\n\n Deseja registrar outra banda? (S/N): ");
     string resposta = Console.ReadLine();
@@ -58,17 +58,27 @@ void RegistrarBanda()
 void ExibirBanda()
 {
     Console.Clear();
-    Console.WriteLine("*********************");
+    Console.WriteLine("************************");
     Console.WriteLine("   Bandas registradas:");
-    Console.WriteLine("*********************");
-    foreach(string banda in ListaDeBanda)
+    Console.WriteLine("************************\n");
+    /*foreach(string banda in ListaDeBanda)
     {
         Console.Write("\n" + banda + "\n");
+    }*/
+    if (ListaDeBanda.Count == 0)
+    {
+        Console.WriteLine("Nenhuma banda foi cadastrada ainda \n");
+        Thread.Sleep(2000);
+        OpcoesMenu();
+    }
+    for (int i = 0; i < ListaDeBanda.Count; i++) 
+    {
+        Console.WriteLine($"\n {i + 1} - {ListaDeBanda[i]}");
     }
     Thread.Sleep(1000);//gera um delay de 1 segundo antes da proxima instrução
-    Console.WriteLine("\n Pressione qualquer tecla para voltar ao menu inicial");
+    Console.WriteLine("\nPressione qualquer tecla para voltar ao menu inicial");
     Console.ReadKey();
-    OpcoesMenu();//retorna ao menu de escolha1
+    OpcoesMenu();//retorna ao menu de escolha
     
 };
 void AvaliarBanda()
